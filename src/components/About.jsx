@@ -20,7 +20,7 @@ const About = ({ setLoading, location }) => {
 
   return (
     <>
-      <Stack spacing={2} align='center'>
+      <Stack spacing={2}>
         <AsiciiLogo />
         <Flex align='center'>
           <Text fontSize={{ base: 'xs', md: 'sm' }} color='neonGreen'>
@@ -43,7 +43,7 @@ const About = ({ setLoading, location }) => {
           </Link>
         </Flex>
 
-        <Text fontSize={{ base: 'xs', md: 'sm' }} color='brand.500' px={{ base: 2, md: '10%' }}>
+        <Text fontSize={{ base: 'xs', md: 'sm' }} color='brand.500'>
           iCEVbot is a prompt-based companion app built on{' '}
           <SiReact
             style={{

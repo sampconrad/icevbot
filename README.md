@@ -1,4 +1,4 @@
-# interactive-terminal-portfolio
+# iCEVbot
 
 Demo: https://icevbot.netlify.app/
 

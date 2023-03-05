@@ -37,7 +37,7 @@ const asiciiArt2 = (
 
 const AsiciiLogo = () => {
   return (
-    <Flex align='center' mt='-10px' justify={{base: 'center', md: 'left'}}>
+    <Flex align='center' mt='-10px'>
       {asiciiArt1}
       {asiciiArt2}
     </Flex>
