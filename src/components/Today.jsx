@@ -21,7 +21,8 @@ const Today = ({ location }) => {
       {today === 0 || today === 6 ? (
         <Stack>
           <Text fontSize={{ base: 'xs', md: 'md' }} color='yellow'>
-            There are no classes today. Get some rest! 😎
+            There are no classes today. <br />
+            Get some rest! 😎
           </Text>
           <UserLocation location={location} />
         </Stack>

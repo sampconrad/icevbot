@@ -25,3 +25,7 @@ Run commands
 2. `yarn install`
 
 3. `yarn run dev`
+
+## DISCLAIMER
+
+This project is in no way affiliated with, authorized, maintained, sponsored or endorsed by iCEV or any of its affiliates or subsidiaries. This is an independent and unofficial software. Use at your own risk.
