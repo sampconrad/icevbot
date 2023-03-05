@@ -1,7 +1,7 @@
-import Window from './components/Window';
+import Terminal from './components/Terminal';
 
 function App() {
-  return <Window />;
+  return <Terminal />;
 }
 
 export default App;

@@ -1,57 +1,51 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import Greeting from './Greeting';
 import Prompt from './Prompt';
-import { Box, Flex, Link, Icon, Text, Progress, Stack } from '@chakra-ui/react';
+import { Box, Flex, Link, Text, Progress, Stack } from '@chakra-ui/react';
 import { IoLogoGithub } from 'react-icons/io';
+import Error from './Error';
+import Help from './Help';
+import Today from './Today';
+import Week from './Week';
+import Semester from './Semester';
+import Channels from './Channels';
 import About from './About';
-import Projects from './Projects';
-import Socials from './Socials';
-import Invalid from './Invalid';
-import Commands from './Commands';
+import CircleIcon from '../chakra/CircleIcon';
 
-const CircleIcon = (props) => (
-  <Icon
-    viewBox='0 0 200 200'
-    boxSize={4}
-    {...props}>
-    <path
-      fill='currentColor'
-      d='M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
-    />
-  </Icon>
-);
-
-const Window = () => {
+const Terminal = () => {
   const [loading, setLoading] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [userPrompt, setUserPrompt] = useState('');
   const [feed, setFeed] = useState([]);
 
-  const printFeed = (component) => {
+  const scrollRef = useRef(null);
+  const inputValue = userPrompt?.toLocaleLowerCase();
+
+  const printFeed = (component, title) => {
     setFeed((prev) => [...prev, component]);
   };
 
-  const scrollRef = useRef(null);
-
-  console.log(userPrompt);
-  console.log(feed);
-
   useEffect(() => {
-    userPrompt.toLowerCase() === 'clear'
+    inputValue === 'clear'
       ? setFeed([])
-      : userPrompt.toLowerCase() === 'help'
-      ? printFeed(<Commands />)
-      : userPrompt.toLowerCase() === 'about'
-      ? printFeed(<About setLoading={setLoading} />)
-      : userPrompt.toLowerCase() === 'projects'
-      ? printFeed(<Projects setLoading={setLoading} />)
-      : userPrompt.toLowerCase() === 'socials'
-      ? printFeed(<Socials />)
+      : inputValue === 'help'
+      ? printFeed(<Help location={'help'} />)
+      : inputValue === 'today'
+      ? printFeed(<Today location={'today'} />)
+      : inputValue === 'week'
+      ? printFeed(<Week location={'week'} />)
+      : inputValue === 'semester'
+      ? printFeed(<Semester location={'semester'} />)
+      : inputValue === 'channels'
+      ? printFeed(<Channels location={'channels'} />)
+      : inputValue === 'about'
+      ? printFeed(<About setLoading={setLoading} location={'about'} />)
       : userPrompt.length > 1 &&
-        (userPrompt.toLowerCase() !== 'about' ||
-          userPrompt.toLowerCase() !== 'projects' ||
-          userPrompt.toLowerCase() !== 'socials')
-      ? setFeed((prev) => [...prev, <Invalid />])
+        (inputValue !== 'today' ||
+          inputValue !== 'week' ||
+          inputValue !== 'semester' ||
+          inputValue !== 'channels')
+      ? setFeed((prev) => [...prev, <Error errorMsg={'Invalid command. Please try again.'} />])
       : null;
   }, [userPrompt]);
 
@@ -83,10 +77,7 @@ const Window = () => {
         width='100%'
         py={2}
         px={2}>
-        <Flex
-          position='absolute'
-          left='10px'
-          gap='2px'>
+        <Flex position='absolute' left='10px' gap='2px'>
           <CircleIcon color='red' />
           <CircleIcon color='yellow' />
           <CircleIcon color='green' />
@@ -94,7 +85,7 @@ const Window = () => {
         <Link
           display='flex'
           alignItems='center'
-          fontSize={{base: '10', md: '13'}}
+          fontSize={{ base: '10', md: '13' }}
           color='brand.500'
           gap={1}
           href='https://github.com/sampconrad'
@@ -103,14 +94,7 @@ const Window = () => {
           <Text fontWeight={700}>github.com/sampconrad</Text>
         </Link>
       </Flex>
-      {loading ? (
-        <Progress
-          size='xs'
-          isIndeterminate
-        />
-      ) : (
-        <Progress size='xs' />
-      )}
+      {loading ? <Progress size='xs' isIndeterminate /> : <Progress size='xs' />}
       <Stack
         ref={scrollRef}
         px='10px'
@@ -118,13 +102,11 @@ const Window = () => {
         height='430px'
         justify='space-between'
         overflowY='scroll'>
-        <Greeting
-          setLoading={setLoading}
-          setShowInput={setShowInput}
-          showInput={showInput}
-        />
+        <Greeting setLoading={setLoading} setShowInput={setShowInput} showInput={showInput} />
         {feed.map((component, index) => (
-          <span key={index}>{component}</span>
+          <Stack key={index}>
+            <span>{component}</span>
+          </Stack>
         ))}
       </Stack>
       {showInput && <Prompt setUserPrompt={setUserPrompt} />}
@@ -132,4 +114,4 @@ const Window = () => {
   );
 };
 
-export default Window;
+export default Terminal;

@@ -1,7 +1,11 @@
-import { Avatar, Flex, Stack, Text } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Avatar, Flex, Link, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import UserLocation from './UserLocation';
+import AsiciiLogo from './AsiciiLogo';
+import { SiChakraui, SiReact, SiVite } from 'react-icons/si';
 
-const About = ({ setLoading }) => {
+const About = ({ setLoading, location }) => {
   const [data, setData] = useState();
   useEffect(() => {
     setLoading(true);
@@ -10,66 +14,71 @@ const About = ({ setLoading }) => {
       .then((data) => {
         setLoading(false);
         setData(data);
-        console.log(data)
+        console.log(data);
       });
   }, []);
 
   return (
     <>
-      <Flex
-        align='center'
-        flexDirection={{ base: 'column', md: 'row' }}
-        px={{ base: '2', md: '10' }}
-        py={5}
-        gap={5}>
-        <Avatar
-          size='xl'
-          name={data?.name}
-          src={data?.avatar_url}
-        />
-        <Stack spacing={0}>
-          <Text
-            fontSize='2xl'
-            color='brightYellow'
-            fontWeight={700}>
-            Conrado Sampaio
+      <Stack spacing={2} align='center'>
+        <AsiciiLogo />
+        <Flex align='center'>
+          <Text fontSize={{ base: 'xs', md: 'sm' }} color='neonGreen'>
+            Developed by
           </Text>
-          <Text
-            fontSize='sm'
-            color='neonGreen'>
-            Front-End Developer & UX Designer
-          </Text>
-          <Text
-            fontSize='xs'
-            color='brand.500'>
-            Conrado is a former LL.B turned Dev, who ditched a career in Law for a keyboard and a
-            Stackoverflow account, which he puts to good use bringing streamlined user-focused
-            projects to life.
-          </Text>
-        </Stack>
-      </Flex>
-      <Flex
-        py={5}
-        align='center'
-        gap={2}>
-        <Text
-          fontSize='sm'
-          color='brightYellow'>
-          # user
+          <Avatar
+            size={{ base: 'xs', md: 'sm' }}
+            name={data?.name}
+            src={data?.avatar_url}
+            margin={'0 3px 0 7px'}
+          />
+          <Link
+            textDecoration='underline'
+            color='darkBlue'
+            fontSize={{ base: 'xs', md: 'sm' }}
+            href='https://github.com/sampconrad/icevbot'
+            isExternal>
+            github.com/sampconrad
+            <ExternalLinkIcon boxSize={3} mx='4px' color='neonPink' />
+          </Link>
+        </Flex>
+
+        <Text fontSize={{ base: 'xs', md: 'sm' }} color='brand.500' px={{ base: 2, md: '10%' }}>
+          iCEVbot is a prompt-based companion app built on{' '}
+          <SiReact
+            style={{
+              marginRight: '4px',
+              fontSize: '16px',
+              display: 'inline',
+              color: '#61DBFB',
+              verticalAlign: '-2px',
+            }}
+          />
+          React,{' '}
+          <SiVite
+            style={{
+              marginRight: '4px',
+              fontSize: '16px',
+              display: 'inline',
+              color: '#ffc21a',
+              verticalAlign: '-2px',
+            }}
+          />
+          Vite &{' '}
+          <SiChakraui
+            style={{
+              marginRight: '4px',
+              fontSize: '16px',
+              display: 'inline',
+              color: '#63cacc',
+              verticalAlign: '-2px',
+            }}
+          />
+          ChakraUI meant to help iCEV's Software Engineering undergrads keep track of classes,
+          upcoming tests & assignments (TBA), official channels & more.
         </Text>
-        <Text
-          fontSize='sm'
-          color='darkBlue'>
-          {' '}
-          in
-        </Text>
-        <Text
-          fontSize='sm'
-          color='neonPink'>
-          {' '}
-          ~/sampconrad/about
-        </Text>
-      </Flex>
+      </Stack>
+      <UserLocation location={location} />
     </>
   );
 };

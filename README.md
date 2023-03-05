@@ -1,11 +1,10 @@
 # interactive-terminal-portfolio
 
-Demo: https://sampconrad-terminal.netlify.app/
+Demo: https://icevbot.netlify.app/
 
 ## About
 
-About
-Interactive terminal-like portfolio website built on ReactJS with Vite and ChakraUI. Pulling information from the GitHub API to populate the displayed info.
+iCEVbot is a prompt-based companion app built on React, Vite & ChakraUI meant to help iCEV's Software Engineering undergrads keep track of classes, upcoming tests & assignments (TBA), official channels & more.
 
 ![preview](./preview.png)
 

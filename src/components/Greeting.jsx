@@ -1,86 +1,61 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Flex, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import UserLocation from './UserLocation';
+import AsiciiLogo from "./AsiciiLogo";
+import comandos from '../config/comandos';
+import explicacoes from '../config/explicacoes';
+
 
 const Greeting = ({ setLoading, setShowInput, showInput }) => {
   const [initialMessages, setInitialMessages] = useState([]);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   const printGreeting = async () => {
+    setLoading(true);
     await delay(1000);
-    setInitialMessages([...initialMessages, 'Welcome!']);
+    setInitialMessages([...initialMessages, <AsiciiLogo/>]);
     await delay(500);
     setInitialMessages((prev) => [...prev, 'Starting the server...']);
-    setLoading(true);
+    
     await delay(3000);
-    setInitialMessages((prev) => [...prev, 'Server ready!']);
+    setInitialMessages((prev) => [...prev, 'Server online!']);
+    
+    await delay(500);
+    for await (const comando of comandos) {
+      setInitialMessages((prev) => [...prev, comando]);
+      await delay(300);
+    }
     setLoading(false);
-    await delay(500);
-    setInitialMessages((prev) => [...prev, 'Type any of the following prompts to proceed:']);
-    await delay(500);
-    setInitialMessages((prev) => [...prev, 'About']);
     await delay(300);
-    setInitialMessages((prev) => [...prev, 'Projects']);
-    await delay(300);
-    setInitialMessages((prev) => [...prev, 'Socials']);
-    await delay(500);
-    setShowInput(true);
+    await setShowInput(true);
   };
 
   useEffect(() => {
     printGreeting();
   }, []);
 
+
   return (
     <Stack>
       {initialMessages.map((message, index) =>
         index > 3 ? (
-          <Text
-            py={2}
-            ml={2}
-            fontSize='sm'
-            color='lightBlue'
-            fontWeight='700'
-            key={index}>
-            <ChevronRightIcon
-              boxSize={6}
-              color='brightYellow'
-            />
-            {message}
-          </Text>
+          <Flex key={index} gap={1} align='center'>
+            <Text py={1} ml={2} fontSize={{base: 'xs', md: 'sm'}} color='lightBlue' fontWeight='700'>
+              <ChevronRightIcon boxSize={4} color='brightYellow' />
+              {message}
+            </Text>
+            <Text fontSize={{base: 'xs', md: 'sm'}} color='brand.500'>
+            | {explicacoes.find((_, i) => i === index - 3)}
+            </Text>
+          </Flex>
         ) : (
-          <Text
-            fontSize='sm'
-            color='brand.100'
-            key={index}>
+          <Text fontSize={{base: 'xs', md: 'sm'}} color='neonGreen' key={index}>
             {message}
           </Text>
         )
       )}
-      {showInput && (
-        <Flex
-          py={5}
-          align='center'
-          gap={2}>
-          <Text
-            fontSize='sm'
-            color='brightYellow'>
-            # user
-          </Text>
-          <Text
-            fontSize='sm'
-            color='darkBlue'>
-            {' '}
-            in
-          </Text>
-          <Text
-            fontSize='sm'
-            color='neonPink'>
-            {' '}
-            ~/sampconrad
-          </Text>
-        </Flex>
-      )}
+      {showInput && <UserLocation location={'root'} />}
     </Stack>
   );
 };

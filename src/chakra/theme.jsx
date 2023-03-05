@@ -17,7 +17,7 @@ const theme = extendTheme(
       darkBlue: '#6A77D2',
       brightYellow: '#F7FCA0',
       neonPink: '#ff4df6',
-      neonGreen: '#00ff22',
+      neonGreen: '#00ff22b9',
       brand: {
         100: '#e4e9ec',
         200: '#cbd6dd',
