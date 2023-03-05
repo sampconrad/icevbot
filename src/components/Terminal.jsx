@@ -44,7 +44,8 @@ const Terminal = () => {
         (inputValue !== 'today' ||
           inputValue !== 'week' ||
           inputValue !== 'semester' ||
-          inputValue !== 'channels')
+          inputValue !== 'channels' ||
+          inputValue !== 'about')
       ? setFeed((prev) => [...prev, <Error errorMsg={'Invalid command. Please try again.'} />])
       : null;
   }, [userPrompt]);

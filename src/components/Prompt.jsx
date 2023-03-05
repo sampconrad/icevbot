@@ -27,7 +27,7 @@ const Prompt = ({ setUserPrompt }) => {
           bg='brand.750'
           _focus={{ bg: 'brand.725' }}
           color='neonGreen'
-          placeholder='Digite um comando para proceder ou "ajuda" para uma lista de comandos.'
+          placeholder='Type a prompt to proceed or "help".'
           fontSize='xs'
           autoFocus
           focusBorderColor='transparent'
