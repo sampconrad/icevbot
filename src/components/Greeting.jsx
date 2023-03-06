@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import UserLocation from './UserLocation';
 import AsiciiLogo from './AsiciiLogo';
 import comandos from '../config/comandos';
-import explicacoes from '../config/explicacoes';
 
 const Greeting = ({ setLoading, setShowInput, showInput }) => {
   const [initialMessages, setInitialMessages] = useState([]);
@@ -16,9 +15,10 @@ const Greeting = ({ setLoading, setShowInput, showInput }) => {
     setInitialMessages([...initialMessages, <AsiciiLogo />]);
     await delay(500);
     setInitialMessages((prev) => [...prev, 'Starting the server...']);
-
     await delay(3000);
     setInitialMessages((prev) => [...prev, 'Server online!']);
+    await delay(500);
+    setInitialMessages((prev) => [...prev, 'Type any of the following prompts to proceed:']);
 
     await delay(500);
     for await (const comando of comandos) {
@@ -36,8 +36,12 @@ const Greeting = ({ setLoading, setShowInput, showInput }) => {
 
   return (
     <Stack>
-      {initialMessages.map((message, index) =>
-        index > 3 ? (
+      {initialMessages.map((comando, index) =>
+        index <= 3 ? (
+          <Text fontSize={{ base: 'xs', md: 'sm' }} color='neonGreen' key={index}>
+            {comando}
+          </Text>
+        ) : (
           <Flex key={index} gap={1} align='center'>
             <Text
               py={1}
@@ -46,16 +50,12 @@ const Greeting = ({ setLoading, setShowInput, showInput }) => {
               color='lightBlue'
               fontWeight='700'>
               <ChevronRightIcon boxSize={4} color='brightYellow' />
-              {message}
+              {comando.prompt}
             </Text>
             <Text fontSize={{ base: 'xs', md: 'sm' }} color='brand.500'>
-              | {explicacoes.find((_, i) => i === index - 3)}
+              | {comando.explanation}
             </Text>
           </Flex>
-        ) : (
-          <Text fontSize={{ base: 'xs', md: 'sm' }} color='neonGreen' key={index}>
-            {message}
-          </Text>
         )
       )}
       {showInput && <UserLocation location={'root'} />}

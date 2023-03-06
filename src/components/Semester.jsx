@@ -7,6 +7,9 @@ import grade from '../config/grade';
 const Semester = ({ location }) => {
   return (
     <Stack>
+      <Text fontSize='xl' color='darkBlue' fontWeight={700}>
+        ~/Classes/Semester
+      </Text>
       {grade.map((periodo, index) => (
         <Stack key={index}>
           <Text fontSize='lg' color='orange' fontWeight={700}>
@@ -17,8 +20,10 @@ const Semester = ({ location }) => {
               - {materia}
             </Text>
           ))}
+          <hr />
         </Stack>
       ))}
+
       <UserLocation location={location} />
     </Stack>
   );

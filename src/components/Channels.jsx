@@ -29,6 +29,7 @@ const Channels = ({ location }) => {
               gap={1}>
               <IoLogoWhatsapp size={15} mx='4px' color='#25D366' />
               {canal.link}
+              <ExternalLinkIcon boxSize={3} mx='4px' color='neonPink' />
             </Link>
           )}
           {canal.email && (

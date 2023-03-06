@@ -66,7 +66,7 @@ const Terminal = () => {
       bg='brand.800'
       border='1px solid'
       borderColor='brand.500'
-      width={{ base: '90%', md: '70%', xl: '50%' }}
+      width={{ base: '95%', md: '70%', xl: '50%' }}
       height='500px'
       margin='auto'>
       <Flex

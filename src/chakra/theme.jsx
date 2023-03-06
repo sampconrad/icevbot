@@ -37,7 +37,9 @@ const theme = extendTheme(
     styles: {
       global: () => ({
         body: {
-          mt: '10%',
+          height: '100vh',
+          overflow: 'hidden',
+          mt: '10vh',
           bg: '#393a59',
           color: '#fff',
         },

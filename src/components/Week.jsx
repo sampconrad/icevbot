@@ -24,7 +24,7 @@ const Week = ({ location }) => {
                     {aula.materia}
                   </Text>
                   <Text fontSize={{ base: 'xs', md: 'sm' }} color='lightBlue'>
-                    {aula.inicio} às {aula.fim}
+                    {aula.inicio} - {aula.fim}
                   </Text>
                   <Text fontSize={{ base: 'xs', md: 'sm' }} color='brand.500'>
                     Prof. {aula.professor}

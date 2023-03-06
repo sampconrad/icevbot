@@ -14,7 +14,6 @@ const About = ({ setLoading, location }) => {
       .then((data) => {
         setLoading(false);
         setData(data);
-        console.log(data);
       });
   }, []);
 

@@ -1,7 +1,7 @@
 {
-  "name": "portfolio-terminal",
-  "private": true,
-  "version": "0.0.0",
+  "name": "icevbot",
+  "private": false,
+  "version": "1.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
