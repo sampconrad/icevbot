@@ -2,7 +2,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Flex, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import UserLocation from './UserLocation';
-import AsiciiLogo from './AsiciiLogo';
+import ASCIIlogo from './ASCIIogo';
 import comandos from '../config/comandos';
 
 const Greeting = ({ setLoading, setShowInput, showInput }) => {
@@ -12,7 +12,7 @@ const Greeting = ({ setLoading, setShowInput, showInput }) => {
   const printGreeting = async () => {
     setLoading(true);
     await delay(1000);
-    setInitialMessages([...initialMessages, <AsiciiLogo />]);
+    setInitialMessages([...initialMessages, <ASCIIlogo />]);
     await delay(500);
     setInitialMessages((prev) => [...prev, 'Starting the server...']);
     await delay(3000);

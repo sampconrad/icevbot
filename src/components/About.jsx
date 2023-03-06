@@ -2,7 +2,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Avatar, Flex, Link, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import UserLocation from './UserLocation';
-import AsiciiLogo from './AsiciiLogo';
+import ASCIIlogo from './ASCIIogo';
 import { SiChakraui, SiReact, SiVite } from 'react-icons/si';
 
 const About = ({ setLoading, location }) => {
@@ -20,7 +20,7 @@ const About = ({ setLoading, location }) => {
   return (
     <>
       <Stack spacing={2} align='center'>
-        <AsiciiLogo />
+        <ASCIIlogo />
         <Flex align='center'>
           <Text fontSize={{ base: 'xs', md: 'sm' }} color='neonGreen'>
             Developed by

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 
-const asiciiArt1 = (
+const ASCIIArtLeft = (
   <pre>
     <code>
       <Text
@@ -21,7 +21,7 @@ const asiciiArt1 = (
   </pre>
 );
 
-const asiciiArt2 = (
+const ASCIIArtRight = (
   <pre>
     <code>
       <Text fontSize={{ base: 8, md: 10 }} color='brand.500'>
@@ -38,13 +38,13 @@ const asiciiArt2 = (
   </pre>
 );
 
-const AsiciiLogo = () => {
+const ASCIIlogo = () => {
   return (
     <Flex align='center' mt='-10px' justify={{ base: 'center', md: 'left' }}>
-      {asiciiArt1}
-      {asiciiArt2}
+      {ASCIIArtLeft}
+      {ASCIIArtRight}
     </Flex>
   );
 };
 
-export default AsiciiLogo;
+export default ASCIIlogo;
