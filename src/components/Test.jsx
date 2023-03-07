@@ -4,10 +4,18 @@ import UserLocation from './UserLocation';
 import provas from '../config/provas';
 
 const Test = ({ location }) => {
-  const dayDelta = 14;
-  const filteredTests = provas.filter(
-    (prova) => prova.data.getDate() - new Date().getDate() < dayDelta
-  );
+  // range of days to search for upcoming tests
+  const daysRange = 14;
+  const currentDate = new Date().getTime();
+  const rouding = 24 * 60 * 60 * 1000;
+  const upcomingTests = provas
+    .filter(({ data }) => data.getTime() - currentDate < daysRange * rouding)
+    .map(({ data, ...rest }) => ({
+      ...rest,
+      data,
+      diasRestantes: Math.floor((data.getTime() - currentDate) / rouding),
+    }))
+    .sort((a, b) => a.diasRestantes - b.diasRestantes);
 
   return (
     <Stack>
@@ -15,14 +23,14 @@ const Test = ({ location }) => {
         ~/Tests/in_14_days
       </Text>
       <hr />
-      {filteredTests.length === 0 ? (
+      {upcomingTests.length === 0 ? (
         <Flex pt={5} align='center' gap={2}>
           <Text fontSize='sm' color='red'>
             No upcoming tests found
           </Text>
         </Flex>
       ) : (
-        filteredTests.map((test, index) => (
+        upcomingTests.map((test, index) => (
           <Stack key={index}>
             <Text fontSize={{ base: 'sm', md: 'md' }} color='neonGreen'>
               {test.materia}
@@ -36,7 +44,17 @@ const Test = ({ location }) => {
               </Text>
             </Flex>
 
-            <Text fontSize={{ base: 'xs', md: 'sm' }} color='red'>
+            <Text
+              fontSize={{ base: 'xs', md: 'sm' }}
+              color={
+                test.diasRestantes < 3
+                  ? 'red'
+                  : test.diasRestantes < 7
+                  ? 'orange'
+                  : test.diasRestantes < 10
+                  ? 'yellow'
+                  : 'brand.400'
+              }>
               In {test.data.getDate() - new Date().getDate()} day(s)
             </Text>
             <hr />
