@@ -11,26 +11,31 @@ export default [
   },
   {
     id: 3,
+    prompt: 'tests',
+    explanation: `upcoming tests (W.I.P)`,
+  },
+  {
+    id: 4,
     prompt: 'semester',
     explanation: `course curriculum`,
   },
   {
-    id: 4,
+    id: 5,
     prompt: 'channels',
     explanation: `iCEV's official channels`,
   },
   {
-    id: 5,
+    id: 6,
     prompt: 'about',
     explanation: `info about this project`,
   },
   {
-    id: 6,
+    id: 7,
     prompt: 'help',
     explanation: `list of commands`,
   },
   {
-    id: 7,
+    id: 8,
     prompt: 'clear',
     explanation: `wipe the terminal clean`,
   },

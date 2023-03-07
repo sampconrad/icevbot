@@ -11,6 +11,7 @@ import Semester from './Semester';
 import Channels from './Channels';
 import About from './About';
 import CircleIcon from '../chakra/CircleIcon';
+import Test from "./Test";
 
 const Terminal = () => {
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,8 @@ const Terminal = () => {
       ? printFeed(<Today location={'today'} />)
       : inputValue === 'week'
       ? printFeed(<Week location={'week'} />)
+      : inputValue === 'tests'
+      ? printFeed(<Test location={'tests'} />)
       : inputValue === 'semester'
       ? printFeed(<Semester location={'semester'} />)
       : inputValue === 'channels'

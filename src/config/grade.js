@@ -1,7 +1,6 @@
 export default [
   [
     'Matemática Discreta',
-    'Teirua da Adnubustração',
     'Engenharia de Software',
     'Algorítmos e Programação',
     'Arquitetura de Computadores',
